@@ -1,6 +1,11 @@
-import 'package:battleships/authentication.dart';
-import 'package:battleships/place_ships.dart';
+import 'package:battleships/providers/auth_provider.dart';
+import 'package:battleships/views/authentication.dart';
+import 'package:battleships/views/place_ships.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+
+import 'home_page.dart';
 
 class AppDrawer extends StatelessWidget {
   const AppDrawer({super.key});
@@ -24,7 +29,7 @@ class AppDrawer extends StatelessWidget {
             children: [
               _buildAIOption('Random', context),
               _buildAIOption('Perfect', context),
-              _buildAIOption('One ship (AI)', context),
+              _buildAIOption('One ship (A1)', context),
             ],
           ),
         );
@@ -37,31 +42,33 @@ class AppDrawer extends StatelessWidget {
       contentPadding: EdgeInsets.zero,
       title: Text(
         option,
-        style: TextStyle(
+        style: const TextStyle(
           fontSize: 16,
         ),
       ),
       onTap: () {
         Navigator.of(context).pop();
-        print('Selected AI: $option');
+        Navigator.of(context)
+            .pushNamed(PlaceShips.route, arguments: option.toLowerCase());
       },
     );
   }
 
   @override
   Widget build(BuildContext context) {
+    var auth = Provider.of<AuthProvider>(context, listen: false);
     return Drawer(
       child: ListView(
         padding: EdgeInsets.zero,
         children: [
-          const DrawerHeader(
-            decoration: BoxDecoration(
+          DrawerHeader(
+            decoration: const BoxDecoration(
               color: Colors.blue,
             ),
             child: Column(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
-                Text(
+                const Text(
                   'Battleships',
                   style: TextStyle(
                     color: Colors.white,
@@ -69,8 +76,8 @@ class AppDrawer extends StatelessWidget {
                   ),
                 ),
                 Text(
-                  'Login as michael',
-                  style: TextStyle(
+                  'Login as ${auth.userName}',
+                  style: const TextStyle(
                     color: Colors.white,
                     fontSize: 18,
                   ),
@@ -82,7 +89,8 @@ class AppDrawer extends StatelessWidget {
             leading: const Icon(Icons.add),
             title: const Text('New game'),
             onTap: () {
-              Navigator.of(context).pushNamed(PlaceShips.route);
+              Navigator.of(context)
+                  .pushNamed(PlaceShips.route, arguments: null);
             },
           ),
           ListTile(
@@ -95,13 +103,23 @@ class AppDrawer extends StatelessWidget {
           ),
           ListTile(
             leading: const Icon(Icons.list),
-            title: const Text('Show completed games'),
-            onTap: () {},
+            title: Text(
+              auth.showCompletedGames
+                  ? 'Show completed games'
+                  : 'Show active games',
+            ),
+            onTap: () {
+              Provider.of<AuthProvider>(context, listen: false).toggle();
+              Navigator.of(context)
+                  .pushNamedAndRemoveUntil(HomePage.route, (route) => false);
+            },
           ),
           ListTile(
             leading: const Icon(Icons.logout),
             title: const Text('Log out'),
-            onTap: () {
+            onTap: () async {
+              SharedPreferences prefs = await SharedPreferences.getInstance();
+              await prefs.remove('access_token');
               Navigator.of(context).pushNamedAndRemoveUntil(
                   AuthenticationPage.route, (route) => false);
             },

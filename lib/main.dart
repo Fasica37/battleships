@@ -1,14 +1,37 @@
-import 'package:battleships/authentication.dart';
-import 'package:battleships/routes.dart';
+import 'package:battleships/views/authentication.dart';
+import 'package:battleships/config/routes.dart';
+import 'package:battleships/views/home_page.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
-void main() {
+import 'providers/auth_provider.dart';
+import 'providers/game_provider.dart';
+
+Future<void> main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+
+  SharedPreferences prefs = await SharedPreferences.getInstance();
+  String? accessToken = prefs.getString('access_token');
+
   runApp(
-    MaterialApp(
-      debugShowCheckedModeBanner: false,
-      title: 'Battleships',
-      home: AuthenticationPage(),
-      routes: Routes.getRoute(),
+    MultiProvider(
+      providers: [
+        ChangeNotifierProvider<AuthProvider>(
+          create: (context) => AuthProvider(),
+        ),
+        ChangeNotifierProvider<GameProvider>(
+          create: (context) => GameProvider(),
+        ),
+      ],
+      child: MaterialApp(
+        debugShowCheckedModeBanner: false,
+        title: 'Battleships',
+        home: accessToken == null || accessToken.isEmpty
+            ? AuthenticationPage()
+            : const HomePage(),
+        routes: Routes.getRoute(),
+      ),
     ),
   );
 }
