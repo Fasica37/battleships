@@ -1,9 +1,9 @@
 import 'package:battleships/providers/game_provider.dart';
-import 'package:battleships/views/home_page.dart';
+import 'package:battleships/views/screens/home_page.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-import 'game_over_dialog.dart';
+import '../widgets/game_over_dialog.dart';
 
 class PlayGame extends StatefulWidget {
   const PlayGame({super.key});

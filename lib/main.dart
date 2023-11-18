@@ -1,6 +1,6 @@
-import 'package:battleships/views/authentication.dart';
+import 'package:battleships/views/screens/authentication.dart';
 import 'package:battleships/config/routes.dart';
-import 'package:battleships/views/home_page.dart';
+import 'package:battleships/views/screens/home_page.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';

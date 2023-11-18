@@ -1,7 +1,7 @@
-import 'package:battleships/views/authentication.dart';
-import 'package:battleships/views/home_page.dart';
-import 'package:battleships/views/place_ships.dart';
-import 'package:battleships/views/play_game.dart';
+import 'package:battleships/views/screens/authentication.dart';
+import 'package:battleships/views/screens/home_page.dart';
+import 'package:battleships/views/screens/place_ships.dart';
+import 'package:battleships/views/screens/play_game.dart';
 import 'package:flutter/material.dart';
 
 class Routes {

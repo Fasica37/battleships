@@ -9,7 +9,7 @@ import '../models/game.dart';
 import '../models/game_details.dart';
 import '../models/game_start_response.dart';
 import '../models/shop_response.dart';
-import '../views/authentication.dart';
+import '../views/screens/authentication.dart';
 
 class GameProvider extends ChangeNotifier {
   List<Game> _games = [];

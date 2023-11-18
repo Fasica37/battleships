@@ -1,11 +1,11 @@
 import 'package:battleships/providers/auth_provider.dart';
-import 'package:battleships/views/authentication.dart';
-import 'package:battleships/views/place_ships.dart';
+import 'package:battleships/views/screens/authentication.dart';
+import 'package:battleships/views/screens/place_ships.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-import 'home_page.dart';
+import '../screens/home_page.dart';
 
 class AppDrawer extends StatelessWidget {
   const AppDrawer({super.key});

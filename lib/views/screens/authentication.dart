@@ -1,10 +1,10 @@
-import 'package:battleships/views/home_page.dart';
+import 'package:battleships/views/screens/home_page.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-import '../providers/auth_provider.dart';
-import '../services/auth_service.dart';
+import '../../providers/auth_provider.dart';
+import '../../services/auth_service.dart';
 
 class AuthenticationPage extends StatefulWidget {
   AuthenticationPage({super.key});

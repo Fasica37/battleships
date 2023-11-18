@@ -1,9 +1,9 @@
 import 'package:battleships/providers/game_provider.dart';
-import 'package:battleships/views/home_page.dart';
+import 'package:battleships/views/screens/home_page.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-import '../providers/auth_provider.dart';
+import '../../providers/auth_provider.dart';
 
 class PlaceShips extends StatefulWidget {
   const PlaceShips({super.key});
