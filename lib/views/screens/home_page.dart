@@ -114,7 +114,6 @@ class _HomePageState extends State<HomePage> {
                         ? Dismissible(
                             key: Key(game.id.toString()),
                             onDismissed: (direction) async {
-                              print(game.id);
                               ScaffoldMessenger.of(context).showSnackBar(
                                 const SnackBar(
                                   content: Text(

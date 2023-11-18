@@ -34,7 +34,6 @@ class GameProvider extends ChangeNotifier {
         'Authorization': 'Bearer $accessToken'
       },
     );
-    print(response.body);
     _isLoading = false;
     Future.delayed(Duration.zero, () {
       notifyListeners();
@@ -80,7 +79,6 @@ class GameProvider extends ChangeNotifier {
       },
       body: jsonEncode(requestBody),
     );
-    print(response.body);
     _isLoading = false;
     Future.delayed(Duration.zero, () {
       notifyListeners();
@@ -104,7 +102,6 @@ class GameProvider extends ChangeNotifier {
 
   Future<void> getGameDetails(int gameId, BuildContext context) async {
     _isLoading = true;
-    print('fffffffffffffffffffffffffffffffffffffff');
     Future.delayed(Duration.zero, () {
       notifyListeners();
     });
@@ -117,7 +114,6 @@ class GameProvider extends ChangeNotifier {
         'Authorization': 'Bearer $accessToken'
       },
     );
-    print(response.body);
     _isLoading = false;
     Future.delayed(Duration.zero, () {
       notifyListeners();
@@ -154,7 +150,6 @@ class GameProvider extends ChangeNotifier {
       },
       body: jsonEncode({'shot': shot}),
     );
-    print(response.body);
 
     _isLoading = false;
     Future.delayed(Duration.zero, () {
@@ -190,7 +185,6 @@ class GameProvider extends ChangeNotifier {
         'Authorization': 'Bearer $accessToken'
       },
     );
-    print(response.body);
     _isLoading = false;
     Future.delayed(Duration.zero, () {
       notifyListeners();

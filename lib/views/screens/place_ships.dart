@@ -42,14 +42,12 @@ class _PlaceShipsState extends State<PlaceShips> {
         }
       }
     }
-    print(selectedShips);
     setState(() {
       isLoading = true;
     });
     if (ai.toString().contains('one')) {
       ai = 'oneship';
     }
-    print(ai);
     final response = await gameStartProvider.startGame(
       selectedShips,
       context,

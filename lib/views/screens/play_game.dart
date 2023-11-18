@@ -53,7 +53,6 @@ class _PlayGameState extends State<PlayGame> {
       }
     }
 
-    print(shipLocation);
     setState(() {
       isLoading = true;
     });
@@ -76,9 +75,6 @@ class _PlayGameState extends State<PlayGame> {
           ),
         );
       }
-      print(response?.message);
-      print(response?.sunkShip);
-      print(response?.won);
       setState(() {
         isLoading = false;
       });
@@ -156,9 +152,7 @@ class _PlayGameState extends State<PlayGame> {
               )
             : Consumer<GameProvider>(
                 builder: (context, gameProvider, _) {
-                  print('Fasicaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa');
                   if (gameProvider.isLoading) {
-                    print('Zewdeeeeeeeeeeeeeeeeeeeeeeee');
                     isSelected =
                         List.generate(5, (_) => List<bool>.filled(5, false));
                     isSunk =
@@ -169,12 +163,10 @@ class _PlayGameState extends State<PlayGame> {
                         List.generate(5, (_) => List<bool>.filled(5, false));
                     isAttacked =
                         List.generate(5, (_) => List<bool>.filled(5, false));
-                    print(isAttacked);
                     return const Center(
                       child: CircularProgressIndicator(),
                     );
                   } else {
-                    print('belachewwwwwwwwwwwwwwwwwwwwwwwwwwwwwww');
                     for (String shipLocation
                         in gameProvider.gameDetails!.ships) {
                       int col = shipLocation.codeUnitAt(0) - 'A'.codeUnitAt(0);
@@ -366,7 +358,6 @@ class _PlayGameState extends State<PlayGame> {
       () {
         if (isAttacked[row][col]) {
           isAttacked[row][col] = false;
-          print(countTrueValues());
         } else {
           selectedCount = isAttacked
               .expand((row) => row)
